@@ -11,11 +11,6 @@ public class Arvore<T extends Comparable<T>> {
         return raiz == null;
     }
 
-    // retorna o numero de pessoas
-    public int size() {
-        return elementos;
-    }
-
     public Node<T> getRaiz() {
         return raiz;
     }
@@ -23,6 +18,7 @@ public class Arvore<T extends Comparable<T>> {
     public Node<T> buscarNo(String cpf) {
         Node<T> pessoaRaiz = raiz;
         Node<T> nodeAux;
+        Node<T> nodeAsc;
         Lista<T> filhos = new Lista<>();
 
         while (true) {
@@ -59,6 +55,18 @@ public class Arvore<T extends Comparable<T>> {
                         if (pessoa.getCpf().equals(cpf)) {
                             nodeAux = filhos.vasculhaNo(filhos.getIndice());
                             filhos.setIndice(0);
+
+                            // zera o indice da lista de filhos dos pais ascendentes
+                            nodeAsc = pessoaRaiz;
+                            do {
+                                nodeAsc = nodeAsc.getAscendente1();
+                                if (nodeAsc != null){
+                                    filhos = nodeAsc.getFilhos();
+                                    filhos.setIndice(0);
+                                    nodeAsc.setFilhos(filhos);
+                                }
+                            } while (nodeAsc != null);
+
                             return nodeAux;
                         } else {
                             // Caso a raíz, o conjuge e o filho apontado pelo indice não possuam o CPF informado, o filho vira a
@@ -72,8 +80,7 @@ public class Arvore<T extends Comparable<T>> {
                     // a nova raíz.
                     filhos.setIndice(0); // Reseta o indice, possibilitando a função ser chamada inumeras vezes sem erro de execução na parte dos filhos.
                     pessoaRaiz = pessoaRaiz.getAscendente1();
-                    if (pessoaRaiz == null)
-                        return null; // Caso o ascendente seja nulo, chegamos a raiz, ou seja, ao vasculhar toda a arvore, não há nenhuma pessoa com o CPF informado.
+                    if (pessoaRaiz == null) return null; // Caso o ascendente seja nulo, chegamos a raiz, ou seja, ao vasculhar toda a arvore, não há nenhuma pessoa com o CPF informado.
                     filhos = pessoaRaiz.getFilhos();
                     filhos.setIndice(filhos.getIndice() + 1);
                 }
@@ -86,51 +93,41 @@ public class Arvore<T extends Comparable<T>> {
 
     // Mesma coisa que o buscarNo, porém retorna Pessoa.
     public Pessoa buscarPessoa(String cpf) {
-        Node<T> pessoaRaiz = raiz;
-        Node<T> nodeAux;
-        Lista<T> filhos = new Lista<>();
+        Node<T> pessoaNo = buscarNo(cpf);
 
-        while (true) {
-            if (pessoaRaiz != null) {
-                Pessoa pessoa = (Pessoa) pessoaRaiz.getInfo();
-                filhos = pessoaRaiz.getFilhos();
-                if (filhos.getIndice() == 0) {
-                    if (pessoa.getCpf().equals(cpf)) {
-                        filhos.setIndice(0);
-                        return pessoa;
-                    } else if (pessoaRaiz.getConjuge() != null) {
-                        nodeAux = pessoaRaiz.getConjuge();
-                        pessoa = (Pessoa) nodeAux.getInfo();
-                        if (pessoa.getCpf().equals(cpf)) {
-                            filhos.setIndice(0);
-                            return pessoa;
-                        }
-                    }
-                }
-                if (!filhos.estaVazia() && filhos.getIndice() < filhos.tamanho()) {
-                    for (; filhos.getIndice() < filhos.tamanho(); filhos.setIndice(filhos.getIndice() + 1)) {
-                        pessoa = (Pessoa) filhos.vasculha(filhos.getIndice());
-                        if (pessoa.getCpf().equals(cpf)) {
-                            filhos.setIndice(0);
-                            return pessoa;
-                        } else {
-                            pessoaRaiz = filhos.vasculhaNo(filhos.getIndice());
-                            break;
-                        }
-                    }
-                } else {
-                    filhos.setIndice(0);
-                    pessoaRaiz = pessoaRaiz.getAscendente1();
-                    if (pessoaRaiz == null) return null;
-                    filhos = pessoaRaiz.getFilhos();
-                    filhos.setIndice(filhos.getIndice() + 1);
+        if (pessoaNo == null) return null;
 
-                }
-            } else {
-                filhos.setIndice(0);
-                return null;
-            }
-        }
+        return (Pessoa) pessoaNo.getInfo();
+    }
+
+    //  Mesma coisa que o buscarNo, porém retorna cônjuge.
+    public Pessoa buscarConjuge(String cpf) {
+        Node<T> noPessoa = buscarNo(cpf);
+        Node<T> noConjuge = noPessoa.getConjuge();
+        if (noConjuge != null){
+            Pessoa conjuge = (Pessoa) noConjuge.getInfo();
+            return conjuge;
+        } else return null;
+    }
+
+    //  Mesma coisa que o buscarNo, porém retorna o ascendente1.
+    public Pessoa buscarAsc1(String cpf) {
+        Node<T> noFilho = buscarNo(cpf);
+        Node<T> noAsc1 = noFilho.getAscendente1();
+        if (noAsc1 != null){
+            Pessoa pessoaAsc1 = (Pessoa) noAsc1.getInfo();
+            return pessoaAsc1;
+        } else return null;
+    }
+
+    //  Mesma coisa que o buscarNo, porém retorna o ascendente1.
+    public Pessoa buscarAsc2(String cpf) {
+        Node<T> noFilho = buscarNo(cpf);
+        Node<T> noAsc2 = noFilho.getAscendente2();
+        if (noAsc2 != null){
+            Pessoa pessoaAsc2 = (Pessoa) noAsc2.getInfo();
+            return pessoaAsc2;
+        } else return null;
     }
 
     public void insereRaiz(T info) {
@@ -152,18 +149,22 @@ public class Arvore<T extends Comparable<T>> {
         Node<T> conjugeNo;
         Lista<T> filhos;
         if (no.getConjuge() == null) {
-            no.setConjuge(new Node<>(conjuge));
-            conjugeNo = no.getConjuge();
+            conjugeNo = new Node<>(conjuge);
+
             filhos = no.getFilhos();
             conjugeNo.setFilhos(filhos);
 
+            conjugeNo.setConjuge(no);
+            no.setConjuge(conjugeNo);
+
             Pessoa pessoa = (Pessoa) conjugeNo.getInfo();
             System.out.println(pessoa.getNome() + " inserido(a) com sucesso.");
-        } else System.out.println("Erro. Essa pessoa já possui um conjuge.");
+        } else System.out.println("Erro. Essa pessoa já possui um cônjuge.");
     }
 
     public void insereFilho(T filho, String cpf) {
         Node<T> nodePessoa = buscarNo(cpf);
+
         insereFilho(filho, nodePessoa);
         elementos++;
     }
@@ -171,20 +172,20 @@ public class Arvore<T extends Comparable<T>> {
     private void insereFilho(T info, Node<T> no) {
         Lista<T> filhos = no.getFilhos();
         Node<T> conjuge = no.getConjuge();
-        Node<T> filhoNo;
-
+        Node<T> filhoNo = new Node<>(info);
         if (filhos == null) filhos = new Lista<>();
 
-        filhos.inserir(info);
-
-        filhoNo = filhos.vasculhaNo(filhos.tamanho() - 1);
         filhoNo.setAscendente1(no);
 
-        no.setFilhos(filhos);
-
         if (conjuge != null) {
-            conjuge.setFilhos(filhos);
             filhoNo.setAscendente2(conjuge);
+            filhos.inserir(filhoNo);
+            conjuge.setFilhos(filhos);
+            no.setConjuge(conjuge);
+            no.setFilhos(filhos);
+        } else {
+            filhos.inserir(filhoNo);
+            no.setFilhos(filhos);
         }
 
         Pessoa pessoa = (Pessoa) info;

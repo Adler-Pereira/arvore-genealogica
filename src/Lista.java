@@ -34,8 +34,7 @@ public class Lista<S> {
         return tamanho == 0;
     }
 
-    public void inserir(S info) {
-        Node<S> novo = new Node<S>(info);
+    public void inserir(Node<S> novo) {
         if (estaVazia()) {
             primeiro = novo;
         }
@@ -47,17 +46,11 @@ public class Lista<S> {
     }
 
     public S vasculha(int indice) {
-        Node<S> procurado;
-            if (indice == 0) {
-                procurado = primeiro;
-                return procurado.getInfo();
-            } else {
-                Node<S> anterior = primeiro;
-                for (int i = 1; i <= indice; i++) {
-                    anterior = anterior.getProximo();
-                }
-                return anterior.getInfo();
-            }
+        Node<S> procurado = vasculhaNo(indice);
+
+        if (procurado == null) return null;
+
+        return procurado.getInfo();
     }
 
     public Node<S> vasculhaNo(int indice) {

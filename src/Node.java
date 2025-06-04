@@ -22,10 +22,6 @@ public class Node<T>{
         return info;
     }
 
-    public void setInfo(T info) {
-        this.info = info;
-    }
-
     public Node<T> getAscendente1() {
         return ascendente1;
     }
