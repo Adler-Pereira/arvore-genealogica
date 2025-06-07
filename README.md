@@ -15,9 +15,22 @@
 
 <h2 id="layout">🎨 Layout</h2>
 
-<p align="center">
-    <img src="images/example.png" alt="Image Example" width="400px">
-</p>
+
+<pre align="center" style="font-size: clamp(10px,1.2vw,15px); text-wrap: nowrap;">
+.______________________________________________________.
+|                                                      |
+|                  ÁRVORE GENEALÓGICA                  |
+|                                                      |
+| Digite o algarismo correspondente ao seu objetivo:   |
+|                                                      |
+| 1 - Consultar CPF;                                   |
+| 2 - Inserir uma pessoa raíz;                         |
+| 3 - Inserir um conjuge;                              |
+| 4 - Inserir um filho.                                |
+| 5 - Sair.                                            |
+|______________________________________________________|
+</pre>
+
 
 <h2 id="technologies">💻 Tecnologias</h2>
 
