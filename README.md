@@ -1,7 +1,7 @@
 <h1 align="center" style="font-weight: bold;">Árvore Genealógica 👨‍👩‍👧‍👦</h1>
 
 <p align="center">
- <a href="#tech">Tecnologias</a> •
+ <a href="#technologies">Tecnologias</a> •
  <a href="#started">Como Testar</a>
 </p>
 
@@ -17,10 +17,9 @@
 
 <p align="center">
     <img src="images/example.png" alt="Image Example" width="400px">
-    <!-- <img src="../.github/example.png" alt="Image Example" width="400px"> -->
 </p>
 
-<h2 id="technologies">💻 Technologies</h2>
+<h2 id="technologies">💻 Tecnologias</h2>
 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 
