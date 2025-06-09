@@ -50,14 +50,14 @@ https://www.jdoodle.com/ia/1HRL<br><br>
 
 <h3>Pré-requisitos</h3>
 <br>
-Teste online pelo link acima:
+🌐Teste online pelo link acima:
 <br><br><b>
 
 - PC ou notebook com acesso à internet
 </b>
 <br>
 
-Teste local:<b>
+💻Teste local:<b>
 
 - Java 8 ou superior
 </b>
