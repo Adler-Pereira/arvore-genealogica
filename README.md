@@ -49,16 +49,13 @@ https://www.jdoodle.com/ia/1HRL<br><br>
 <img src="images/gif-step3.gif"><br><br>
 
 <h3>Pré-requisitos</h3>
-<br>
 🌐Teste online pelo link acima:
-<br><br><b>
+<br><b>
 
 - PC ou notebook com acesso à internet
 </b>
-<br>
-
-💻Teste local:<b>
+💻Teste local:<br><b>
 
 - Java 8 ou superior
 </b>
-
+<br>
