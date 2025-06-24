@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-     <a href="https://www.jdoodle.com/ia/1HRL">💻 Visite esse projeto</a>
+     <a href="https://www.jdoodle.com/ia/1HRL">💻 Visite esse projeto 💻</a>
 </p>
 
 <h2 id="layout">🎨 Layout</h2>
@@ -32,7 +32,7 @@
 </pre>
 
 
-<h2 id="technologies">💻 Tecnologias 💻</h2>
+<h2 id="technologies">💻 Tecnologias</h2>
 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 
