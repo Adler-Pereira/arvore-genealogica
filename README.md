@@ -39,13 +39,14 @@
 <h2 id="started">🚀 Como Testar</h2>
 
 Aqui estão algumas instruções para testar o projeto rapidamente:
-1. Acesse o link do projeto:
+
+<b>1.</b> Acesse o link do projeto:
 https://www.jdoodle.com/ia/1HRL<br><br>
-2. Clique no botão "Execute" no canto superior direito da tela para executar o código.<br><br>
+<b>2.</b> Clique no botão "Execute" no canto superior direito da tela para executar o código.<br><br>
 <img src="images/gif-step1.gif"><br><br>
-3. Em seguida, posicione o cursor sobre os 3 pontos no canto superior direito da tela ao lado de "Input/Output" e clique em "Maximize".<br><br>
+<b>3.</b> Em seguida, posicione o cursor sobre os 3 pontos no canto superior direito da tela ao lado de "Input/Output" e clique em "Maximize".<br><br>
 <img src="images/gif-step2.gif"><br><br>
-4. Por fim, clique no canto inferior do terminal e siga os passos que o sistema te fornecer.<br><br>
+<b>4.</b> Por fim, clique no canto inferior do terminal e siga os passos que o sistema te fornecer.<br><br>
 <img src="images/gif-step3.gif"><br><br>
 
 <h3>Pré-requisitos</h3>
